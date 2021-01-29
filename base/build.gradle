@@ -28,4 +28,8 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7'
     api 'com.google.code.gson:gson:2.8.2'
 
+    debugApi 'com.didichuxing.doraemonkit:dokitx:3.3.5'
+    releaseApi 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:2.6'
+
 }

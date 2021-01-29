@@ -1,15 +1,12 @@
 package com.xiangxue.webview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.xiangxue.base.autoservice.XiangxueServiceLoader;
 import com.xiangxue.common.autoservice.IWebViewService;
-
-import java.util.ServiceLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
                 IWebViewService webviewService = XiangxueServiceLoader.load(IWebViewService.class);
                 if(webviewService != null) {
                     webviewService.startDemoHtml(MainActivity.this);
+//                    webviewService.clearCache(MainActivity.this);
+//                    webviewService.startWebViewActivity(MainActivity.this,"http://www.baidu.com","Title",true);
+//                    webviewService.getWebViewFragment("http://www.baidu.com/",true);
                 }
             }
         });

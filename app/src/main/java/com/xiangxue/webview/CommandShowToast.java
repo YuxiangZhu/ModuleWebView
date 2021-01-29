@@ -2,6 +2,7 @@ package com.xiangxue.webview;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.auto.service.AutoService;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 @AutoService({Command.class})
 public class CommandShowToast implements Command {
+    private static final String TAG = "CommandShowToast";
     @Override
     public String name() {
         return "showToast";
@@ -19,6 +21,7 @@ public class CommandShowToast implements Command {
 
     @Override
     public void execute(final Map parameters, ICallbackFromMainprocessToWebViewProcessInterface callback) {
+        Log.e(TAG, "execute: " + Thread.currentThread().getName());
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override

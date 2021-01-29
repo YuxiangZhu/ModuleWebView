@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.xiangxue.base.BaseApplication;
 import com.xiangxue.webview.ICallbackFromMainprocessToWebViewProcessInterface;
@@ -15,6 +16,7 @@ import com.xiangxue.webview.mainprocess.MainProcessCommandService;
 public class WebViewProcessCommandDispatcher implements ServiceConnection {
     private static WebViewProcessCommandDispatcher sInstance;
     private IWebviewProcessToMainProcessInterface iWebviewProcessToMainProcessInterface;
+    private static final String TAG = "WebViewProcessCommandDi";
 
     public static WebViewProcessCommandDispatcher getInstance() {
         if (sInstance == null) {
@@ -54,6 +56,7 @@ public class WebViewProcessCommandDispatcher implements ServiceConnection {
                     @Override
                     public void onResult(String callbackname, String response) throws RemoteException {
                         baseWebView.handleCallback(callbackname, response);
+                        Log.e(TAG, "onResult: callbackname response" + callbackname);
                     }
                 });
             } catch (RemoteException e) {

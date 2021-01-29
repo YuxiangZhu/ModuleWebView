@@ -19,7 +19,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xiangxue.base.loadsir.ErrorCallback;
 import com.xiangxue.base.loadsir.LoadingCallback;
 import com.xiangxue.webview.databinding.FragmentWebviewBinding;
-import com.xiangxue.webview.webviewprocess.settings.WebViewDefaultSettings;
 import com.xiangxue.webview.utils.Constants;
 
 public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefreshListener {
@@ -83,7 +82,6 @@ public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefr
         } else {
             mBinding.smartrefreshlayout.setEnableRefresh(mCanNativeRefresh);
         }
-        Log.d(TAG, "pageFinished");
         mBinding.smartrefreshlayout.finishRefresh();
         if (mLoadService != null) {
             if(mIsError){

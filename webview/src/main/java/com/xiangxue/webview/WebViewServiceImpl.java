@@ -2,6 +2,7 @@ package com.xiangxue.webview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.webkit.WebView;
 
 import androidx.fragment.app.Fragment;
 
@@ -33,5 +34,12 @@ public class WebViewServiceImpl implements IWebViewService {
         intent.putExtra(Constants.TITLE, "本地Demo测试页");
         intent.putExtra(Constants.URL, Constants.ANDROID_ASSET_URI + "demo.html");
         context.startActivity(intent);
+    }
+
+    @Override
+    public void clearCache(Context context) {
+        WebView webView = new WebView(context);
+        webView.clearCache(true);
+
     }
 }

@@ -13,11 +13,11 @@ import com.xiangxue.webview.BuildConfig;
 public class WebViewDefaultSettings {
     private WebSettings mWebSettings;
 
-    public static WebViewDefaultSettings getInstance(){
-        return new WebViewDefaultSettings();
+    private WebViewDefaultSettings() {
     }
 
-    private WebViewDefaultSettings(){
+    public static WebViewDefaultSettings getInstance() {
+        return new WebViewDefaultSettings();
     }
 
     private static boolean isNetworkConnected(Context context) {
@@ -30,17 +30,20 @@ public class WebViewDefaultSettings {
             return false;
         }
     }
+
     public void setSettings(WebView webView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webView.enableSlowWholeDocumentDraw();
         }
         mWebSettings = webView.getSettings();
         mWebSettings.setJavaScriptEnabled(true);
-        mWebSettings.setSupportZoom(true);
         mWebSettings.setBuiltInZoomControls(false);
         if (isNetworkConnected(webView.getContext())) {
             mWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         } else {
+//            mWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+
+            //如果使用了这个，则意味着之前如果访问过这个网站，有了缓存，那么在没有网络的时候再进入这个网站的时候，会读取缓存
             mWebSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
 
@@ -87,11 +90,16 @@ public class WebViewDefaultSettings {
         mWebSettings.setGeolocationEnabled(true);
         mWebSettings.setUseWideViewPort(true);
 
+        //缩放操作
+        mWebSettings.setSupportZoom(false); //支持缩放，默认为true。是下面那个的前提。
+        mWebSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
+        mWebSettings.setDisplayZoomControls(true); //隐藏原生的缩放控件
+
         String appCacheDir = webView.getContext().getDir("cache", Context.MODE_PRIVATE).getPath();
         Log.i("WebSetting", "WebView cache dir: " + appCacheDir);
         mWebSettings.setDatabasePath(appCacheDir);
         mWebSettings.setAppCachePath(appCacheDir);
-        mWebSettings.setAppCacheMaxSize(1024*1024*80);
+        mWebSettings.setAppCacheMaxSize(1024 * 1024 * 80);
 
         // 用户可以自己设置useragent
         // mWebSettings.setUserAgentString("webprogress/build you agent info");
