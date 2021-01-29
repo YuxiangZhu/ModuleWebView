@@ -6,19 +6,13 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.xiangxue.webview.WebViewCallBack;
 import com.xiangxue.webview.bean.JsParam;
 import com.xiangxue.webview.webviewprocess.settings.WebViewDefaultSettings;
-import com.xiangxue.webview.WebViewCallBack;
-
 import com.xiangxue.webview.webviewprocess.webchromeclient.XiangxueWebChromeClient;
 import com.xiangxue.webview.webviewprocess.webviewclient.XiangxueWebViewClient;
-
-import org.w3c.dom.Text;
-
-import java.util.Map;
 
 public class BaseWebView extends WebView {
     public static final String TAG = "XiangxueWebView";
@@ -72,6 +66,10 @@ public class BaseWebView extends WebView {
                 public void run() {
                     String jscode = "javascript:xiangxuejs.callback('" + callbackname + "'," + response + ")";
                     Log.e("xxxxxx", jscode);
+                    //也可以实现
+//                    loadUrl(jscode);
+
+                    //4.4之后才
                     evaluateJavascript(jscode, null);
                 }
             });
