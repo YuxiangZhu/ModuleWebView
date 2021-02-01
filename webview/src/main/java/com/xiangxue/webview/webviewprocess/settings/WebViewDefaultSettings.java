@@ -47,6 +47,7 @@ public class WebViewDefaultSettings {
             mWebSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
 
+        //解决5.0后默认不支持MIX_CONTENT而造成白屏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mWebSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
@@ -82,6 +83,8 @@ public class WebViewDefaultSettings {
         mWebSettings.setSaveFormData(false);
         mWebSettings.setLoadWithOverviewMode(true);
         mWebSettings.setUseWideViewPort(true);
+
+// 解决对某些标签的不支持出现白屏
         mWebSettings.setDomStorageEnabled(true);
         mWebSettings.setNeedInitialFocus(true);
         mWebSettings.setDefaultTextEncodingName("utf-8");//设置编码格式

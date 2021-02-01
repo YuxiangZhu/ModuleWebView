@@ -65,11 +65,10 @@ public class BaseWebView extends WebView {
                 @Override
                 public void run() {
                     String jscode = "javascript:xiangxuejs.callback('" + callbackname + "'," + response + ")";
-                    Log.e("xxxxxx", jscode);
-                    //也可以实现
+                    Log.e("xxxxxxcallbackname", jscode);
+                    //也可以实现，会刷新界面
 //                    loadUrl(jscode);
-
-                    //4.4之后才
+                    //4.4之后可以使用，不会刷新界面
                     evaluateJavascript(jscode, null);
                 }
             });
