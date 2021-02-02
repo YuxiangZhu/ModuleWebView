@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,10 @@ public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefr
         bundle.putBoolean(Constants.CAN_NATIVE_REFRESH, canNativeRefresh);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    public WebView getWebView() {
+        return mBinding.webview;
     }
 
     @Override

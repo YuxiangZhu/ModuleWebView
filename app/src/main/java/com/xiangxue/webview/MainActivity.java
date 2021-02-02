@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 IWebViewService webviewService = XiangxueServiceLoader.load(IWebViewService.class);
                 if(webviewService != null) {
-                    webviewService.startDemoHtml(MainActivity.this);
+//                    webviewService.startDemoHtml(MainActivity.this);
 //                    webviewService.clearCache(MainActivity.this);
-//                    webviewService.startWebViewActivity(MainActivity.this,"http://www.baidu.com","Title",true);
+                    webviewService.startWebViewActivity(MainActivity.this, "http://www.baidu.com", "Title", true);
 //                    webviewService.getWebViewFragment("http://www.baidu.com/",true);
                 }
             }
